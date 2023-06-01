@@ -12,8 +12,8 @@ import pickle
 
 data = pd.read_csv('insurance.csv',na_values='?')
 
-print(data.info())
-print(data.head(5))
+
+data.head()
 
 
 
@@ -35,14 +35,15 @@ X['sex'] = X['sex'].apply(lambda x : categoricalValueToInt(x))
 X['smoker'] = X['smoker'].apply(lambda x : categoricalValueToInt(x))
 X['region'] = X['region'].apply(lambda x : categoricalValueToInt(x))
 
-
 model = LinearRegression()
 
 #Fitting model with trainig data
 model.fit(X, y)
 
 #saving model to disk
-pickle.dump(model, open('model.pickle', 'wb'))
+pickle.dump(model, open('model.pkl', 'wb'))
 
 # Loading model to compare the results
-model = pickle.load(open('model.pickle','rb'))
+model = pickle.load(open('model.pkl','rb'))
+# predict = model.predict([[30,1,45.32,1,1,0]])
+# print('Predicted Value',str(round(predict[0],2)))
